@@ -114,6 +114,8 @@ void Server::accept_loop() {
       continue;
     }
 
+    std::cout << "[Server] Accepted new connection (fd: " << client_fd << ")\n";
+
     {
       std::scoped_lock lock(clients_latch_);
       client_fds_.insert(client_fd);
@@ -162,6 +164,8 @@ void Server::handle_client(int client_fd) {
         continue;
       }
 
+      std::cout << "[Server] Received command from fd " << client_fd << ": \"" << line << "\"\n";
+
       std::string response = execute_command(line);
       ssize_t written = write(client_fd, response.data(), response.size());
       if (written < 0) {
@@ -169,6 +173,8 @@ void Server::handle_client(int client_fd) {
       }
     }
   }
+
+  std::cout << "[Server] Client disconnected (fd: " << client_fd << ")\n";
 
   {
     std::scoped_lock lock(clients_latch_);
