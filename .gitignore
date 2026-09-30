@@ -2,7 +2,9 @@ build/
 bin/
 lib/
 *.db
+*.wal
 *.log
 .DS_Store
 .vscode/
 .idea/
+.cache/
