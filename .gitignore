@@ -1,0 +1,8 @@
+build/
+bin/
+lib/
+*.db
+*.log
+.DS_Store
+.vscode/
+.idea/
